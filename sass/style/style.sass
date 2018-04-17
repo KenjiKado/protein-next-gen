@@ -1,0 +1,963 @@
+@import compass/reset
+@import compass/css3
+@import compass/layout
+@import compass/typography
+@import compass/utilities
+
+@import "../grid.scss"
+@import "../jquery.fancybox.min.scss"
+@import "../owl.carousel.scss"
+@import "../flipclock.scss"
+@import "../animate.scss"
+
+//FONTS
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=cyrillic')
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic')
+@import url('https://fonts.googleapis.com/css?family=Pridi:200,300,400,500,600,700&subset=thai')
+
+// CONFIG
+$base-font-size: 16px !global
+$base-line-height: 24px !global
++establish-baseline
+
+//COLORS
+$orange: #ff6600
+$hover: #e64709
+$active: #c83800
+$red: #fd364e
+$blue: #24ade0
+$green: #24c100
+
+//SYSTEM
+%inline
+	display: inline-block
+	margin: 0 -3px
+	float: none
+
+@mixin block ($color)
+	background-repeat: no-repeat
+	background-position: center top
+	overflow-x: hidden
+	&-block
+		@extend %inline
+	.text-block
+		padding: 60px 0 5px
+		.title-block
+			padding: 10px 0
+			h2
+				span
+					color: $color
+		p
+			margin: 10px 0 15px
+		.btn-container
+			.btn
+				margin-top: 35px
+	.image-block
+		position: absolute
+		bottom: 0
+		img
+			max-width: inherit
+@mixin tableBlock ($color, $margin)			
+	margin-top: $margin
+	padding: 40px 0
+	&-block
+		position: relative
+		border-radius: 20px
+		background-color: #FFF
+		padding: 15px 0 10px
+		.col-sm-6.col-xs-12
+			@extend %inline
+			vertical-align: middle
+		.title-block
+			text-align: center
+			&:after
+				content: ''
+				display: block
+				width: 100%
+				height: 2px
+				margin: 10px auto
+				background-color: $color
+			h3
+				&:before
+					content: ''
+					display: inline-block
+					width: 30px
+					height: 31px
+					background-image: url("../img/alarm.png")
+					background-size: contain
+					vertical-align: middle
+					margin-right: 10px
+
+//TYPOGRAPHY
+h1, h2, h3, h4, h5
+	display: inline-block
+	font-family: 'Noto Sans', 'Pridi', sans-serif
+	font-weight: bold
+	text-transform: uppercase
+h1
+	+adjust-font-size-to(35px)
+h2
+	+adjust-font-size-to(26px)
+	line-height: 1.2	
+h3
+	+adjust-font-size-to(20px)
+h4
+	+adjust-font-size-to(20px)
+	&:after
+		content: ''
+		display: block
+		height: 2px
+		margin-top: 5px
+		background-color: transparent
+strong, b
+	font-weight: bold
+
+//BTNS
+.btn
+	display: inline-block
+	text-decoration: none
+	text-align: center
+	box-sizing: border-box
+	border: none
+	outline: none
+	transition: all 0.4s ease-out
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.3)
+	&:focus
+		outline: none
+		text-decoration: none
+	&.orange-btn
+		padding: 13px 35px
+		border-radius: 30px
+		+adjust-font-size-to(20px)
+		background-color: $orange
+		color: #fff	
+		cursor: pointer	
+		&:hover
+			text-decoration: none
+			background-color: $hover
+		&:active
+			text-decoration: none
+			background-color: $active
+		&:focus
+			text-decoration: none	
+	&.simple-btn
+		padding: 8px 25px
+		border: 1px solid $orange
+		border-radius: 30px
+		color: $orange
+		background-color: transparent
+		box-shadow: none
+		&:hover
+			background-color: $orange
+			color: #fff
+			text-decoration: none		
+	&.red-btn
+		width: 100%
+		padding: 15px 0
+		border-radius: 30px
+		+adjust-font-size-to(20px)
+		background-color: #fd364e
+		color: #fff
+		text-decoration: none
+		border: none
+		cursor: pointer
+		&:hover
+			text-decoration: none
+//STYLE
+body
+	font-family: 'Roboto', 'Pridi', sans-serif
+	font-size: 1em
+	background-color: #FFF
+	color: #333	
+	overflow-x: hidden 
+img
+	max-width: 100%
+.mobile-block
+	display: none				
+.table
+	display: table
+	width: 100%
+	overflow: visible
+	position: relative
+	top: 0
+	.tr
+		display: table-row
+		.td
+			display: table-cell	
+			padding: 10px 0
+			vertical-align: middle
+			.image-block
+				display: none
+			p
+				font-family: 'Roboto Medium', 'Pridi', sans-serif
+			&:first-child
+				width: 20%
+				padding: 0 30px 0 0
+				p
+					display: inline-block
+					font-family: 'Roboto', 'Pridi', sans-serif
+					font-weight: bold
+					+adjust-font-size-to(22px)
+					line-height: 1
+					&:after
+						content: ''
+						display: block
+						height: 2px
+						margin-top: 5px
+		&:first-child
+			.td
+				&:first-child
+					p
+						&:after
+							background-color: #fc9762
+		&:nth-child(2)		
+			.td
+				&:first-child	
+					p
+						&:after
+							background-color: #ffd200
+		&:last-child
+			.td
+				&:first-child
+					p
+						&:after
+							background-color: #fffa6e																	
+header
+	position: fixed
+	width: 100%
+	height: 70px
+	background-color: #FFF
+	box-sizing: border-box
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2)
+	z-index: 1000
+	.logo
+		img
+			padding: 10px 0
+			max-height: 70px
+	.phone
+		+adjust-font-size-to(25px)
+		line-height: 70px
+		text-align: right
+		vertical-align: middle
+		p
+			display: inline-block
+		&:before
+			content: ''
+			width: 21px
+			height: 21px
+			display: inline-block
+			vertical-align: baseline
+			margin-right: 5px
+			background-image: url("../img/phone-i.png")
+			background-position: center
+			background-repeat: no-repeat
+			background-size: cover
+.next-gen-protein
+	width: 100%
+	padding-top: 70px
+	background-image: url("../img/bg1.jpg")
+	background-repeat: no-repeat
+	background-size: cover
+	overflow: hidden
+	.next-gen-block
+		@extend %inline
+		vertical-align: bottom
+	.text-block
+		padding: 65px 0 45px
+		box-sizing: border-box
+		.title-block
+			padding: 15px 0
+			h1
+				span
+					color: $orange
+		p
+			width: 84%
+			margin: 15px 0
+			font-family: 'Roboto', 'Pridi', sans-serif
+			font-weight: 400
+			+adjust-font-size-to(20px)
+			line-height: 1.4
+		.btn-container
+			padding: 45px 0
+			.btn
+				margin-top: 55px
+	.image-block
+		display: inline-block
+		img
+			height: 100%
+			max-width: inherit
+	&:lang(bg), &:lang(es), &:lang(it), &:lang(ro), &:lang(en)
+		overflow: initial
+		.row
+			display: table
+			.next-gen-block
+				display: table-cell
+				position: relative
+				float: none
+				vertical-align: bottom		
+			.image-block
+				display: inline-block
+				img
+					position: absolute
+					bottom: -43px
+					height: 100%
+					max-width: inherit					
+.after-training
+	@include block($green)	
+.before-training
+	@include block($blue)	
+.before-training
+	background-image: url('../img/bg2.jpg'), linear-gradient(to bottom, #ffffff 8%,#cff2fe 83%,#ccf1fe 100%)
+	&-block
+		&:first-child
+			vertical-align: bottom
+		&:last-child
+			padding-bottom: 120px
+	.image-block
+		right: 0
+.after-training
+	background-image: url(../img/bg3.jpg),linear-gradient(to bottom, #ffffff 8%,#f8fef0 52%,#ecffdf 100%)
+	&-block
+		&:last-child
+			vertical-align: bottom
+		&:first-child
+			padding-bottom: 70px	
+	.image-block
+		left: 0					
+.after-training, .before-training
+	&:lang(bg), &:lang(es), &:lang(it), &:lang(ro), &:lang(en)
+		.image-block 
+			img
+				width: 100%
+.before-one-hour
+	background: linear-gradient(to bottom, #d3f3fe 0%,#b8ecff 60%,#68d1f4 60%,#68d1f4 100%)
+	@include tableBlock($blue, -90px)
+	padding: 0 0 40px
+.after-half-hour
+	background: linear-gradient(to bottom, #ebffda 0%,#f1ffe5 60%,#97df3a 60%,#97df3a 100%)
+	@include tableBlock($green, -10px)
+	padding: 0 0 40px
+.nutricilogos-about-vitaenergy
+	padding: 50px 0
+	background-image: url("../img/bg5.jpg")
+	background-repeat: no-repeat
+	background-size: cover
+	.title-block
+		text-align: center
+		h2
+			&:before, &:after
+				content: ''
+				display: inline-block
+				width: 36px
+				height: 40px
+				background-image: url("../img/leaf.png")
+			&:before
+				margin-right: 20px	
+			&:after
+				transform: scale(-1, 1)
+				margin-left: 20px
+	.about-block
+		margin-top: 50px
+		.item
+			position: relative
+			min-height: 450px
+			margin: 5px
+			padding: 40px 20px 60px
+			border-radius: 5px
+			background-color: #FFF
+			box-shadow: 0 2px 10px 0 rgba(0,0,0,.3)
+			box-sizing: border-box
+			.image-block
+				text-align: center
+			ul
+				padding: 15px 0 10px
+				li
+					margin: 10px 0
+					p
+						display: inline-block
+						width: 90%
+					&:before
+						content: ''
+						display: inline-block
+						width: 16px
+						height: 11px
+						margin-right: 5px
+						margin-top: 7px
+						vertical-align: top
+						background-image: url("../img/check.png")
+			>.image-block
+				&:last-child
+					height: 150px
+					img
+						position: absolute
+						padding: 0 10px
+						bottom: 0
+						left: 0
+						right: 0
+						margin: auto
+						vertical-align: bottom
+	.btn-container	
+		text-align: center
+		margin: 40px 0
+.reviews-our-clients
+	padding: 40px 0 0
+	background-image: url("../img/bg4.jpg")
+	background-repeat: no-repeat
+	background-size: cover
+	overflow-x: hidden
+	.title-block
+		text-align: center
+		h2
+			line-height: 1.2
+			color: #fff		
+			&:after
+				content: ''
+				display: block
+				height: 2px
+				background-color: #FFF
+	.reviews-block
+		padding: 50px 0 0
+		.owl-item
+			.one-review
+				margin: 5px
+				padding: 40px
+				border-radius: 8px
+				background-color: #FFF
+				.col-xs-12
+					@extend %inline
+					vertical-align: top
+				.image-block
+					width: 100%
+					text-align: center
+					&+p
+						font-family: 'Roboto Medium', 'Pridi', sans-serif
+						text-align: center	
+	.owl-controls
+		.owl-pagination
+			padding: 20px 0
+			text-align: center
+			.owl-page
+				display: inline-block
+				margin: 0 5px
+				span
+					display: inline-block
+					width: 12px
+					height: 12px
+					border-radius: 100%
+					background-color: rgba(255,255,255,0.5)
+				&.active
+					span
+						background-color: #FFF
+		.owl-buttons
+			.owl-prev
+				position: absolute
+				right: 102%
+				bottom: 50%
+				width: 33px
+				height: 52px
+				background-image: url("../img/prev.png")
+				background-repeat: no-repeat
+				background-position: center
+			.owl-next
+				position: absolute
+				left: 102%
+				bottom: 50%
+				width: 33px
+				height: 52px
+				background-image: url("../img/next.png")
+				background-repeat: no-repeat
+				background-position: center	
+.select-you-flavor
+	padding: 50px 0
+	.container
+		.row
+			>.title-block
+				width: 53%
+				padding: 40px 0
+				margin: 0 auto
+				text-align: center
+				h2
+					line-height: 1.2
+			.flavor-block		
+				.one-flavor
+					.title-block
+						text-align: center
+					.image-block
+						text-align: center	
+					.text-block
+						width: 50%
+						margin: 5px auto
+						text-align: center
+					.btn-container
+						padding: 30px 0
+						text-align: center	
+				&:nth-child(2)
+					.one-flavor
+						.title-block
+							h4
+								&:after
+									background-color: #9c4936
+				&:nth-child(3)
+					.one-flavor
+						.title-block
+							h4
+								&:after
+									background-color: #ff6481								
+				&:last-child
+					.one-flavor
+						.title-block
+							h4
+								&:after
+									background-color: #ffe84f									
+.buy-protein
+	padding: 40px 0
+	background-image: url("../img/green_bg.jpg")
+	background-repeat: no-repeat
+	background-size: cover
+	.title-block
+		margin-bottom: 70px
+		text-align: center
+		h3
+			font-family: 'Noto Sans', 'Pridi', sans-serif
+			font-weight: bold
+			+adjust-font-size-to(27px)
+			line-height: 1.2
+			line-height: 1
+			text-shadow: 0 2px 3px rgba(0,0,0,0.8)
+			color: #fff
+			span
+				display: block
+				+adjust-font-size-to(29px)
+				line-height: 1.2
+				text-shadow: 0 2px 0 rgba(255,255,255,0.44)
+				color: #fd364e
+	.form-container
+		display: table
+		width: 100%	
+	.promo-block
+		position: relative	
+		display: table-cell		
+		float: none
+		vertical-align: bottom
+.buy-protein, .modal
+	form
+		padding: 40px 30px
+		border-radius: 5px	
+		background-color: #FFF
+		box-shadow: 0 3px 15px 0 rgba(0,0,0,0.44)
+		p
+			display: block
+			width: 80%
+			margin: 0 auto
+			padding-bottom: 15px
+			text-align: center
+			+adjust-font-size-to(20px)
+			line-height: 1.2
+			span
+				display: block
+				margin: 0 auto
+				+adjust-font-size-to(26px)
+				line-height: 1.2
+				font-weight: bold
+				color: $red
+		.input-row, .select-row
+			width: 100%
+			margin: 10px 0
+			input, select
+				width: 100%
+				height: 40px
+				padding: 8px 15px
+				border-radius: 5px
+				border: 1px solid #cacaca
+				box-sizing: border-box
+				+input-placeholder
+					color: #a8a8a8
+				&:focus
+					outline: none
+				&.error
+					box-shadow: none
+					border: 1px solid rgba($red,0.6)		
+			select
+				background-image: url("../img/down.png")
+				background-repeat: no-repeat
+				background-position: 96% center
+				color: #a8a8a8
+				@include appearance(none)
+				option
+					color: #333
+				&:disabled
+					background-color: #b8b8b8
+					color: #333
+		label.error
+			color: $red			
+		.checkbox-row
+			margin: 10px 0
+			label:not(.error)
+				display: inline-block
+				width: 30px
+				height: 30px
+				border: 1px solid #cacaca
+				border-radius: 5px
+			input
+				width: 0
+				height: 0
+				visibility: hidden
+			label:not(.error).checked
+				background-image: url("../img/check.png")
+				background-repeat: no-repeat
+				background-position: center
+			p
+				display: inline-block
+				width: 85%
+				+adjust-font-size-to(14px)
+				line-height: 1.2
+				text-align: left
+				padding-left: 10px
+				vertical-align: top
+				color: #a8a8a8
+				a
+					color: #a8a8a8
+					text-decoration: underline
+					&:hover
+						text-decoration: underline
+		.btn-container
+			width: 75%
+			margin: 0 auto
+			padding: 20px 0 60px
+		.image-block
+			text-align: center	
+			padding: 5px 0
+	.promotion-time, .mobile-block	
+		.image-block
+			position: absolute
+			width: 100%
+			bottom: 10%
+			text-align: center
+		.timer-block
+			position: absolute
+			bottom: 0
+			left: 0
+			right: 0
+			width: 80%
+			min-height: 160px
+			margin: auto
+			padding: 20px 40px
+			background-color: #ffd539
+			border-radius: 10px
+			box-shadow: inset 0 4px 5px 0 rgba(255,255,255,0.69), 0px 3px 15px 0px rgba(0,0,0,0.44)
+			box-sizing: border-box
+			p
+				font-family: 'Roboto Medium', 'Pridi', sans-serif
+				+adjust-font-size-to(24px)
+				line-height: 1.2
+footer
+	margin-top: -2px
+	padding: 35px 0
+	background-color: #666
+	.col-xs-4, .col-xs-8
+		@extend %inline
+		vertical-align: middle
+	p
+		color: #ededed
+	a
+		display: block
+		width: 100%
+		text-transform: uppercase
+		text-align: right
+		text-decoration: underline
+		color: #ededed	
+		&:hover
+			color: #ededed
+			text-decoration: none
+.modal
+	display: none
+	max-width: 480px
+	margin: 0 15px
+	padding: 0
+	border-radius: 5px
+	background-color: #FFF	
+			
+@media screen and (max-width: 1200px)
+	.buy-protein
+		.promotion-time	
+			.timer-block
+				padding: 20px
+@media screen and (max-width: 992px)
+	.nutricilogos-about-vitaenergy 
+		.about-block 
+			.item 
+				ul 
+					li
+						p
+							width: 80%
+	.buy-protein
+		.container
+			width: 100%
+		form
+			padding: 20px	
+			p
+				width: 100%
+@media screen and (max-width: 767px)
+	h2
+		+adjust-font-size-to(22px)	
+		line-height: 1.2
+	.mobile-block
+		display: block
+	.table 
+		.tr 
+			display: block
+			padding: 20px 0 0
+			.td
+				display: block
+				padding: 0
+				.image-block
+					display: inline-block
+					vertical-align: middle
+					margin: 0 10px
+				&:first-child
+					width: 100%
+					padding: 0
+					p
+						&:after
+							margin-top: 0					
+				&:last-child
+					display: none
+	.btn-container
+		text-align: center				
+	.btn
+		&.orange-btn
+			+adjust-font-size-to(18px)				
+	header
+		.head-block
+			display: inline-block
+			margin: 0 -3px
+			float: none		
+			vertical-align: middle
+		.phone
+			+adjust-font-size-to(20px)
+	.next-gen-protein 
+		.image-block
+			width: 100%
+			text-align: center
+			img
+				height: initial
+				max-width: 100%
+				vertical-align: bottom
+		.text-block
+			p
+				width: 100%
+			.btn-container
+				padding: 0
+		&:lang(bg), &:lang(es), &:lang(it), &:lang(ro), &:lang(en)
+			overflow: hidden
+			.row
+				display: block
+			.next-gen-block
+				display: block
+			.image-block
+				img
+					position: static
+					height: initial
+					max-width: 100%
+					margin-bottom: -43px			
+	.before-training, .after-training 
+		.image-block
+			display: none
+	.before-one-hour-block, .after-half-hour-block
+		padding: 15px 0 20px
+		border-radius: 0
+		.title-block 
+			h3
+				&:before
+					display: block
+					margin: 5px auto
+		.image-block
+			padding: 20px 0 0
+	.before-one-hour
+		background-image: linear-gradient(to bottom, #ccf1ff 0%, #caf1ff 60%, #68d1f4 60%, #68d1f4 100%)
+	.nutricilogos-about-vitaenergy
+		padding: 30px 0
+		background-image: none
+		.title-block 
+			padding: 0 15px
+			h2
+				+adjust-font-size-to(22px)
+				line-height: 1.2
+				&:before
+					display: block
+					margin: 10px auto
+				&:after
+					content: initial	
+		.about-block
+			margin-top: 25px	
+			.item
+				text-align: center
+				ul
+					display: block
+					margin: 0 auto
+					max-width: 65%
+					min-height: 250px
+					li
+						p
+							+adjust-font-size-to(20px)
+							line-height: 1.2
+							text-align: left
+		.btn-container
+			margin: 40px 15px			 
+		.about-block
+			display: none
+			.item
+				margin: 15px
+	.reviews-our-clients 
+		.reviews-block 
+			.owl-item 
+				.one-review
+					padding: 25px 15px
+		.owl-controls 
+			.owl-buttons 
+				display: none
+	.select-you-flavor 
+		.container 
+			.row
+				>.title-block 
+					width: 100%
+					padding: 30px 15px
+				.one-flavor
+					margin: 20px 0	
+	.buy-protein 
+		.title-block
+			margin-bottom: 20px
+		.promotion-time
+			display: none
+		.mobile-block 
+			.timer-block
+				position: static
+				width: 100%
+				padding: 10px 20px
+		.promo-block
+			display: block
+			width: 100%
+		form
+			margin: 0 5px
+@media screen and (max-width: 480px)	
+	header 
+		.phone
+			+adjust-font-size-to(16px)
+			line-height: 1	
+			&:before
+				width: 15px
+				height: 15px
+	.next-gen-protein 
+		padding: 40px 0 0
+		.text-block 
+			p		
+				+adjust-font-size-to(16px)
+				line-height: 1.2
+	.nutricilogos-about-vitaenergy 
+		.about-block 
+			.item 
+				ul	
+					max-width: 100%		
+					li
+						p
+							font-size: 1em
+							text-align: left
+	.buy-protein 
+		.title-block
+			h3
+				+adjust-font-size-to(20px)
+		.mobile-block 
+			.timer-block	
+				padding: 20px 10px	
+				p
+					+adjust-font-size-to(18px)
+
+//TIMER		
+.timer-content
+	display: table
+	width: 100%	
+	border-spacing: 10px 20px
+	.timer
+		display: table-row
+		width: 100%
+		margin: 0
+		text-align: left
+		span
+			display: none
+		&:before, &:after
+			content: initial
+		ul 
+			display: table-cell
+			float: none
+			max-width: 50px
+			width: 10%
+			height: 70px
+			margin-right: 2px
+			padding: 0 20px
+			background-color: transparent
+			&:nth-child(3n)+span
+				display: table-cell
+				width: 3%
+				float: none	
+				height: initial
+			li 
+				a 
+					div 
+						div.inn
+							text-align: center
+							text-shadow: none
+							text-transform: uppercase
+							font-family: 'Roboto', 'Pridi', sans-serif
+							font-weight: 400
+							font-size: 50px
+							line-height: 1.4
+							color: #333
+							background-color: #FFF		
+			&.play 
+				li.flip-clock-before 
+					.down 
+						.shadow
+							background-color: transparent
+.timer-text
+	display: table
+	width: 100%
+	.hours,.minutes, .seconds
+		display: table-cell	
+		width: 33%
+		text-align: center						
+@media (max-width: 992px)
+	.timer-content
+		.timer 
+			ul 
+				height: 60px
+				li 
+					a 
+						div 
+							div.inn
+								font-size: 34px
+								line-height: 1.8
+@media (max-width: 768px)
+	.timer-content
+		width: 100%
+		border-spacing: 5px 20px
+		.timer 
+			ul
+				width: 6%
+	.timer-text
+		margin-top: -20px
+@media (max-width: 480px)		
+	h1
+		+adjust-font-size-to(22px)
+		line-height: 1.2		
+	.timer-content 
+		.timer 
+			ul
+				padding: 0 10px
+				&:nth-child(3n)+span
+					width: 1%
+				li
+					a 
+						div 
+							div.inn	
+								font-size: 26px
+								line-height: 2.4
